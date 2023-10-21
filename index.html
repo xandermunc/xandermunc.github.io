@@ -1,24 +1,392 @@
 <!DOCTYPE html>
+<html lang="en">
 
-<html>
-
-<head>  
-  <title>p5js</title>
+<head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Prototype</title>
   <style>
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #EFEFEF;
+      user-select: none;
+    }
+
+    .folder-container {
+      width: 72px;
+      height: 63px;
+      flex-shrink: 0;
+      top: 20%;
+      left: 80%;
+      position: absolute;
+      cursor: grab;
+      z-index: 1;
+    }
+
+    .folder,
+    .folder2 {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    .folder2 {
+      display: none;
+    }
+
+    .folder-label {
+      position: absolute;
+      color: #231F20;
+      font-family: "Helvetica Neue";
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 12px;
+      z-index: 1;
+      user-select: none;
+      top: 70px;
+      left: 20px;
+    }
+
+    .XANDER-MUNC,
+    .motion,
+    .design,
+    .music,
+    .code,
+    .where,
+    .places,
+    .studying,
+    .at,
+    .MECA,
+    .graduation,
+    .email,
+    .instagram,
+    .last-updated,
+    .date,
+    .footer {
+      position: absolute;
+      color: #231F20;
+      font-family: "Helvetica Neue";
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 12px;
+      z-index: 0;
+      user-select: none;
+    }
+
+    .XANDER-MUNC {
+      top: 36px;
+      left: 36px;
+    }
+
+    .motion {
+      top: 60px;
+      left: 156px;
+    }
+
+    .design {
+      top: 60px;
+      left: 216px;
+    }
+
+    .music {
+      top: 60px;
+      left: 276px;
+    }
+
+    .code {
+      top: 60px;
+      left: 336px;
+    }
+
+    .where {
+      top: 84px;
+      left: 36px;
+    }
+
+    .places {
+      top: 96px;
+      left: 156px;
+      width: 84px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .studying {
+      top: 132px;
+      left: 36px;
+    }
+
+    .at {
+      top: 132px;
+      left: 96px;
+    }
+
+    .MECA {
+      top: 132px;
+      left: 156px;
+    }
+
+    .graduation {
+      top: 132px;
+      left: 216px;
+    }
+
+    .email {
+      top: 156px;
+      left: 96px;
+    }
+
+    .instagram {
+      top: 168px;
+      left: 96px;
+    }
+
+    .last-updated {
+      top: 156px;
+      left: 276px;
+    }
+
+    .date {
+      top: 168px;
+      left: 336px;
+    }
+
+    .poster-container {
+      position: absolute;
+      top: 100px;
+      left: 100px;
+      width: 25%;
+      height: auto;
+      background: #EFEFEF;
+      cursor: grab;
+      z-index: 2;
+    }
+
+    .poster {
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 8%;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
     }
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
-  <script src="pixel_grid.js"></script>
 </head>
 
 <body>
-    
+  <div class="box">
+    <!-- folders -->
+    <div class="folder-container" id="folder-container">
+      <!-- folder 1 (closed) -->
+      <div class="folder" id="folder">
+        <div class="folder-label">waves</div> <!-- Add a div for the label -->
+        <svg id="folder-closed" xmlns="http://www.w3.org/2000/svg" width="73" height="63" viewBox="0 0 73 63"
+          fill="none" onclick="showBox()">
+          <g clip-path="url(#clip0_7_27)">
+            <path d="M0 18V0H27L36 9H72V18" fill="#6491FF" />
+            <path d="M72 18H0V63H72V18Z" fill="#6491FF" />
+            <path d="M0 18H72" stroke="#FAFAFA" stroke-miterlimit="10" />
+          </g>
+          <defs>
+            <clipPath id="clip0_7_27">
+              <rect width="72" height="63" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+      </div>
+      <!-- folder 2 (open)  -->
+      <div class="folder2" id="folder2">
+        <div class="folder-label">waves</div> <!-- Add a div for the label -->
+        <svg id="folder-open" xmlns="http://www.w3.org/2000/svg" width="81" height="63" viewBox="0 0 81 63" fill="none">
+          <g clip-path="url(#clip0_7_8)">
+            <path d="M0.48999 18V0H27.49L36.49 9H72.49V18" fill="#6491FF" />
+            <path d="M72.49 18H0.48999V63H72.49V18Z" fill="#6491FF" />
+            <path d="M72.49 63H0.48999L9.48999 18H81.49L72.49 63Z" fill="#6491FF" />
+            <path d="M81.49 18H9.48999L0.48999 63" stroke="#FAFAFA" stroke-miterlimit="10" />
+          </g>
+          <defs>
+            <clipPath id="clip0_7_8">
+              <rect width="81.49" height="63.1" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+      </div>
+    </div>
+
+    <div class="XANDER-MUNC">
+      XANDER MUNC © 2023
+    </div>
+
+    <div class="motion">
+      motion
+    </div>
+
+    <div class="design">
+      design
+    </div>
+
+    <div class="music">
+      music
+    </div>
+
+    <div class="code">
+      code
+    </div>
+
+    <div class="where">
+      where:
+    </div>
+
+    <div class="places">
+      Portland, ME
+      Columbus, OH
+    </div>
+
+    <div class="studying">
+      studying
+    </div>
+
+    <div class="at">
+      @
+    </div>
+
+    <div class="MECA">
+      MECA&D
+    </div>
+
+    <div class="graduation">
+      2025
+    </div>
+
+    <div class="email">
+      xandermunc@gmail.com
+    </div>
+
+    <div class="instagram">
+      <a href="https://www.instagram.com/xander.munc/" target="_blank"
+        style="color: #6491FF; text-decoration: none;">Instagram</a>
+    </div>
+
+    <div class="last-updated">
+      last updated:
+    </div>
+
+    <div class="date">
+      10/21/2023
+    </div>
+
+    <div class="footer">
+      work in progress
+    </div>
+
+    <div class="poster-container" id="poster-container" style="user-select: none; display: none;">
+      <img class="poster" id="poster"
+        src="https://github.com/xandermunc/xandermunc.github.io/blob/main/Waves.jpg?raw=true">
+    </div>
+
+    <script>
+      const posterContainer = document.getElementById("poster-container");
+      const folderContainer = document.getElementById("folder-container");
+      const folder = document.getElementById("folder");
+      const folder2 = document.getElementById("folder2");
+      let isOpen = false;
+      let isDragging = false;
+      let clickX, clickY;
+      let offsetX, offsetY;
+
+      // Function to center the poster in the screen
+      function centerPoster() {
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+        const posterWidth = posterContainer.offsetWidth;
+        const posterHeight = posterContainer.offsetHeight;
+
+        const centerX = (screenWidth - posterWidth) / 2;
+        const centerY = (screenHeight - posterHeight) / 2;
+
+        posterContainer.style.left = centerX + "px";
+        posterContainer.style.top = centerY + "px";
+      }
+
+      folderContainer.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        offsetX = e.clientX - folderContainer.getBoundingClientRect().left;
+        offsetY = e.clientY - folderContainer.getBoundingClientRect().top;
+        folderContainer.style.cursor = "grabbing";
+        clickX = e.clientX;
+        clickY = e.clientY;
+      });
+
+      folderContainer.addEventListener("click", (e) => {
+        if (Math.abs(e.clientX - clickX) < 2 && Math.abs(e.clientY - clickY) < 2) {
+          isOpen = !isOpen;
+          if (isOpen) {
+            folder.style.display = "none";
+            folder2.style.display = "block";
+            posterContainer.style.display = "block"; // Show poster when folder is opened
+            centerPoster(); // Center the poster
+          } else {
+            folder.style.display = "block";
+            folder2.style.display = "none";
+            posterContainer.style.display = "none"; // Hide poster when folder is closed
+          }
+        }
+      });
+
+      poster.addEventListener("dragstart", (e) => {
+        e.preventDefault();
+      });
+
+      let posterIsDragging = false;
+      let posterClickX, posterClickY;
+      let posterOffsetX, posterOffsetY;
+
+      posterContainer.addEventListener("mousedown", (e) => {
+        posterIsDragging = true;
+        posterOffsetX = e.clientX - posterContainer.getBoundingClientRect().left;
+        posterOffsetY = e.clientY - posterContainer.getBoundingClientRect().top;
+        posterContainer.style.cursor = "grabbing";
+        posterClickX = e.clientX;
+        posterClickY = e.clientY;
+      });
+
+      document.addEventListener("mousemove", (e) => {
+        if (isDragging) {
+          const x = e.clientX - offsetX;
+          const y = e.clientY - offsetY;
+
+          folderContainer.style.left = x + "px";
+          folderContainer.style.top = y + "px";
+        }
+
+        if (posterIsDragging) {
+          const x = e.clientX - posterOffsetX;
+          const y = e.clientY - posterOffsetY;
+
+          posterContainer.style.left = x + "px";
+          posterContainer.style.top = y + "px";
+        }
+      });
+
+      document.addEventListener("mouseup", () => {
+        isDragging = false;
+        folderContainer.style.cursor = "grab";
+        posterIsDragging = false;
+        posterContainer.style.cursor = "grab";
+      });
+    </script>
 </body>
 
 </html>
