@@ -46,6 +46,10 @@
             color: #09f;
         }
 
+        .no-hover:hover {
+            color: #e1e1e1;
+        }
+
         .bottom {
             position: absolute;
             bottom: 50px;
@@ -66,13 +70,15 @@
             href="https://www.linkedin.com/in/xander-munc-221a34277/">Linkedin</a> - <a
             href="https://xandermunc.art/glossary">Waves</a></p>
     <a href="mailto:xandermunc@gmail.com">xandermunc@gmail.com</a>
-    <p class="bottom">website coming soon</p>
+    <p class="bottom">website coming <a class="no-hover" href="https://xandermunc.art/page_3">soon</a></p>
 </body>
 
 <script>
     document.addEventListener('keydown', function (event) {
         if (event.key === 'p' || event.key === 'P') {
             window.location.href = 'https://xandermunc.art/piano';
+        } else if (event.key === '3') {
+            window.location.href = 'https://xandermunc.art/page_3';
         }
     });
 </script>
