@@ -70,10 +70,20 @@
             href="https://www.linkedin.com/in/xander-munc-221a34277/">Linkedin</a> - <a
             href="https://xandermunc.art/glossary">Waves</a></p>
     <a href="mailto:xandermunc@gmail.com">xandermunc@gmail.com</a>
-    <p class="bottom">website coming <a class="no-hover" href="https://xandermunc.art/page_3">soon</a></p>
+    <p class="bottom">website coming <a id="soonLink" class="no-hover" href="https://xandermunc.art/page_3">soon</a></p>
 </body>
 
 <script>
+    function isMobile() {
+        return window.innerWidth <= 768; 
+    }
+    const soonLink = document.getElementById('soonLink');
+
+    if (!isMobile()) {
+        soonLink.removeAttribute('href'); 
+        soonLink.classList.add('no-hover');
+    }
+    
     document.addEventListener('keydown', function (event) {
         if (event.key === 'p' || event.key === 'P') {
             window.location.href = 'https://xandermunc.art/piano';
